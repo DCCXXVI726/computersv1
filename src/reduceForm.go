@@ -25,17 +25,19 @@ func ReduceForm (str string) (polynom [3]float64, err error) {
 		}
 		i++
 		if (i >= len(terms) || terms[i] != "*") {
-			err = fmt.Errorf("После числа должно идти умножение")
+			fmt.Println(i)
+			fmt.Println(terms[i])
+			err = fmt.Errorf("every term should respect the form a * X^p")
 			return polynom, err
 		}
 		i++
 		if (i >= len(terms) || len(terms[i]) < 3 || terms[i][0:2] != "X^") {
-			err = fmt.Errorf("После умножения должен идти X в степени");
+			err = fmt.Errorf("every term should respect the form a * X^p");
 			return polynom, err
 		}
 		degree, errLoop:= strconv.Atoi(terms[i][2:])
-		if degree < 0 || degree > 3 {
-			err = fmt.Errorf("Неправильная степень")
+		if degree < 0 || degree > 2 {
+			err = fmt.Errorf("polynom degree shouldn't be greater than 2.")
 			return polynom, err
 		}
 		polynom[degree] += (float64(sign) * float64(equils) * number)
@@ -46,7 +48,7 @@ func ReduceForm (str string) (polynom [3]float64, err error) {
 		i++
 		if i >= len(terms) {
 			if equils == 1 {
-				err = fmt.Errorf("Нет знака равно")
+				err = fmt.Errorf("don't have equils mark")
 				return polynom, err
 			}
 			return polynom, nil
@@ -56,7 +58,7 @@ func ReduceForm (str string) (polynom [3]float64, err error) {
 			sign = -1
 		} else if terms[i] == "=" && equils != -1 {
 			if equils == -1 {
-				err = fmt.Errorf("Может быть только одно равно")
+				err = fmt.Errorf("More than 1 equils mark")
 				return polynom, err
 			}
 			equils = -1
@@ -67,11 +69,11 @@ func ReduceForm (str string) (polynom [3]float64, err error) {
 				sign = 1
 			}
 		} else {
-			err = fmt.Errorf("После степени должно идти + - =")
+			err = fmt.Errorf("every term should respect the form a * X^p")
 			return polynom, err
 		}
 		i++;
 	}
-	err = fmt.Errorf("Дошел до конца")
+	err = fmt.Errorf("unknown err")
 	return polynom, err
 }

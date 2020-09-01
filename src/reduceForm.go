@@ -25,8 +25,6 @@ func ReduceForm (str string) (polynom [3]float64, err error) {
 		}
 		i++
 		if (i >= len(terms) || terms[i] != "*") {
-			fmt.Println(i)
-			fmt.Println(terms[i])
 			err = fmt.Errorf("every term should respect the form a * X^p")
 			return polynom, err
 		}

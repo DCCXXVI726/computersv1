@@ -9,9 +9,9 @@ func FindSolution(coef [3]float64) {
 	if coef[2] == 0 {
 		if coef[1] == 0 {
 			if coef[0] == 0 {
-				fmt.Println("Бесконечное кол-во решений")
+				fmt.Println("Solution is field of rational numbers")
 			} else {
-				fmt.Println("Решений нет")
+				fmt.Println("There is no solution")
 			}
 		} else {
 			fmt.Println("Solution is ", coef[0] / coef[1])
@@ -20,7 +20,7 @@ func FindSolution(coef [3]float64) {
 		disc := coef[1] * coef[1] - 4 * coef[0] * coef[2]
 		fmt.Println("Discriminant is ", disc)
 		if disc < 0 {
-			fmt.Println("Решений нет")
+			fmt.Println("There is no solution")
 		} else if disc > 0 {
 			fmt.Println("Solution are:")
 			sqrtDisc := math.Sqrt(disc)
